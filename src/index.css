@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  --color-primary: #FFD000;
+  --color-dark: #0A0A0A;
+  --color-charcoal: #141414;
+}
+
+@layer base {
+  body {
+    @apply bg-dark text-white font-sans selection:bg-primary selection:text-dark;
+    overflow-x: hidden;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-white/5 backdrop-blur-lg border border-white/10;
+  }
+  
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-white to-white/50;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* Custom Cursor */
+.custom-cursor {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #FFD000;
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.1s ease;
+  mix-blend-mode: difference;
+}
+
+.custom-cursor-dot {
+  width: 4px;
+  height: 4px;
+  background: #FFD000;
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+}
+
+/* Car Drift Animation Keyframes */
+@keyframes drift {
+  0% { transform: translateX(-100%) rotate(0deg); }
+  40% { transform: translateX(10%) rotate(-5deg); }
+  60% { transform: translateX(0%) rotate(5deg); }
+  100% { transform: translateX(0%) rotate(0deg); }
+}
+
+.drift-in {
+  animation: drift 1.2s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
